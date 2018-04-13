@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:data="http://www.springframework.org/schema/data"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+ 	<!-- 配置property -->
+<!-- 	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean"> -->
+<!-- 		<property name="location"> -->
+<!-- 			<list> -->
+<!-- 				<value>classpath:property/path.property</value> -->
+<!-- 				<value>classpath:property/database.property</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+ 	<!-- 装载property -->
+<!-- 	<bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PreferencesPlaceholderConfigurer"> -->
+<!-- 		<property name="properties" ref="configProperties"></property> -->
+<!-- 	</bean> -->
+	
+	<!-- 扫描装载组件，除controller -->
+	<context:component-scan base-package="com.test">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	
+	<!-- 配置数据源 -->
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close"> -->
+<!-- 		<property name="driverClass" value="${jdbc.driverClass}"/> -->
+<!-- 		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"/> -->
+<!-- 		<property name="user" value="${jdbc.user}"/> -->
+<!-- 		<property name="password" value="${jdbc.password}"/> -->
+<!-- 		<property name="minPoolSize" value="${jdbc.minPoolSize}"/> -->
+<!-- 		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"/> -->
+<!-- 		<property name="maxIdleTime" value="${jdbc.maxIdleTime}"/> -->
+<!-- 	</bean> -->
+
+<!-- 	<bean id="PersistenceExceptionTranslationPostProcessor" -->
+<!-- 		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" /> -->
+	
+<!-- 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> -->
+<!-- 		<property name="dataSource" ref="dataSource"/> -->
+<!-- 		<property name="packagesToScan" value="com.test"/> -->
+<!-- 		<property name="persistenceProvider"> -->
+<!-- 			<bean class="org.hibernate.ejb.HibernatePersistence"/> -->
+<!-- 		</property> -->
+<!-- 		<property name="jpaVendorAdapter"> -->
+<!-- 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"> -->
+<!-- 				<property name="generateDdl" value="false"></property> -->
+<!-- 				<property name="database" value="SQL_SERVER"></property> -->
+<!-- 				<property name="databasePlatform" value="${hibernate.dialect}"></property> -->
+<!-- 				<property name="showSql" value="${hibernate.show_sql}"></property> -->
+<!-- 			</bean> -->
+<!-- 		</property> -->
+		
+<!-- 		<property name="jpaDialect"> -->
+<!-- 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"></bean> -->
+<!-- 		</property> -->
+<!-- 		<property name="jpaPropertyMap"> -->
+<!-- 			<map> -->
+<!-- 				<entry key="hibernate.ejb.naming_strategy" value="${hibernate.naming_strategy}"></entry> -->
+<!-- 				<entry key="hibernate.format_sql" value="${hibernate.format_sql}"></entry> -->
+<!-- 				<entry key="hibernate.jdbc.batch_size" value="${hibernate.jdbc.batch_size}"></entry> -->
+<!-- 				<entry key="hibernate.hibernate.connection.SetBigStringTryBlob" -->
+<!-- 					value="${hibernate.hibernate.connection.SetBigStringTryBlob}"></entry> -->
+<!-- 				<entry key="hibernate.hibernate.archive.autodetection" value="${hibernate.hibernate.archive.autodetection}"></entry> -->
+<!-- 				<entry key="hibernate.hibernate.connection.charSet" value="${hibernate.hibernate.connection.charSet}"></entry> -->
+<!-- 				<entry key="hibernate.hibernate.cache.use_query_cache" value="${hibernate.hibernate.cache.use_query_cache}"></entry> -->
+<!-- 				<entry key="hibernate.hibernate.cache.use_second_level_cache" value="${hibernate.hibernate.cache.use_second_level_cache}"></entry> -->
+<!-- 			</map> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+<!-- 	<bean id="hibernateJpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/> -->
+	
+	<!-- Jpa 事务配置 -->
+<!-- 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> -->
+<!-- 		<property name="entityManagerFactory" ref="entityManagerFactory"/> -->
+<!-- 	</bean> -->
+
+	<!-- Spring Data Jpa配置 -->
+<!-- 	<jpa:repositories base-package="com.test" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory"/> -->
+
+<!-- 	<aop:aspectj-autoproxy proxy-target-class="true"/> -->
+	
+<!-- 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" /> -->
+
+</beans>
